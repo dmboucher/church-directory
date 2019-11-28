@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DirectoryApp
+﻿namespace DirectoryApp
 {
     public class Common
     {
@@ -36,6 +30,28 @@ namespace DirectoryApp
             FrmMain.btnGenerateDirectoryPages.Enabled = !string.IsNullOrWhiteSpace(folderPath)
                 && !string.IsNullOrWhiteSpace(Properties.Settings.Default.DatabaseFilePath);
             FrmMain.lblGenerateDirectoryStatus.Text = FrmMain.btnGenerateDirectoryPages.Enabled ? "" : "Please complete settings";
+        }
+
+        public static int CountWordsAndCommas(string inputString)
+        {
+            if (string.IsNullOrWhiteSpace(inputString)) return 0;
+
+            int c = 0;
+            for (int i = 1; i < inputString.Length; i++)
+            {
+                if (char.IsWhiteSpace(inputString[i - 1]) == true || inputString.Substring(i, 1) == ",")
+                {
+                    if (char.IsLetterOrDigit(inputString[i]) == true || char.IsPunctuation(inputString[i]))
+                    {
+                        c++;
+                    }
+                }
+            }
+            if (inputString.Length > 2)
+            {
+                c++;
+            }
+            return c;
         }
     }
 }
