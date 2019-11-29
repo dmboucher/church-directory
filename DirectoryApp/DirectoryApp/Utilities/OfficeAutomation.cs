@@ -1,11 +1,15 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System;
+using System.Drawing;
+using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 namespace DirectoryApp
 {
     public static class OfficeAutomation
     {
+        // TODO: This method is huge and ugly... needs to be broken apart and refactored a bit.
         public static void GenerateDirectoryPages(System.Windows.Forms.Button btnGenerateDirectoryPages, System.Windows.Forms.Label lblGenerateDirectoryStatus)
         {
             Application application = null;
@@ -14,6 +18,12 @@ namespace DirectoryApp
                 // Control updates
                 btnGenerateDirectoryPages.Enabled = false;
                 lblGenerateDirectoryStatus.Text = "Creating output document...";
+
+                // Load clipboard with "no picture" image
+                Assembly myAssembly = Assembly.GetExecutingAssembly();
+                Stream myStream = myAssembly.GetManifestResourceStream("DirectoryApp.Assets.picture-not-available.jpg");
+                Bitmap bmp = new Bitmap(myStream);
+                System.Windows.Forms.Clipboard.SetImage(bmp);
 
                 // Create output document
                 application = new Application();
@@ -68,8 +78,19 @@ namespace DirectoryApp
                     object objEndOfDocFlag = "\\endofdoc"; //  \endofdoc is a predefined bookmark
                     var tableRange = document.Bookmarks.get_Item(ref objEndOfDocFlag).Range;
                     var table = document.Tables.Add(tableRange, 1, 2);
-                    table.Cell(1, 1).Range.Text = $"Pic goes here";
                     table.Cell(1, 1).Width = application.PixelsToPoints(225f);
+
+                    // Image
+                    if (!string.IsNullOrWhiteSpace(directoryEntry.Picture) && File.Exists(Properties.Settings.Default.OutputFolder + "\\" + directoryEntry.Picture))
+                    {
+                        table.Cell(1, 1).Range.InlineShapes.AddPicture(Properties.Settings.Default.OutputFolder + "\\" + directoryEntry.Picture);
+                    }
+                    else
+                    {
+                        table.Cell(1, 1).Range.Paste();
+                    }
+                    
+                    // Text information for directory entry
                     table.Cell(1, 2).Range.Text = directoryEntryText;
                     table.Cell(1, 2).Range.Font.Name = "Perpetua";
                     table.Cell(1, 2).Range.Font.Size = 11;
@@ -87,15 +108,27 @@ namespace DirectoryApp
                     object spacerRange = document.Bookmarks.get_Item(ref objEndOfDocFlag).Range;
                     var spacerParagaph = document.Content.Paragraphs.Add(ref spacerRange);
                     spacerParagaph.Format.SpaceBefore = spacerParagaph.Format.SpaceAfter = 0;
-                    spacerParagaph.Range.Font.Size = 2;
+                    spacerParagaph.Range.Font.Size = 10;
                 }
 
                 // Save output file
+                lblGenerateDirectoryStatus.Text = "Saving file...";
                 string fileName = $"{Properties.Settings.Default.OutputFolder}\\DirectoryBody_{DateTime.Now:yyyyMMddHHmmss}.docx";
                 application.ActiveDocument.SaveAs(fileName, WdSaveFormat.wdFormatDocumentDefault);
                 document.Close();
-                System.Windows.Forms.MessageBox.Show($"Your file has been created at {fileName}", "Success!",
-                    System.Windows.Forms.MessageBoxButtons.OK, System.Windows.Forms.MessageBoxIcon.Information);
+
+                // Message box with option to open the file
+                var dialogResult = System.Windows.Forms.MessageBox.Show($"Your file has been created at\r\n{fileName}\r\n "
+                    + "\r\nWould you like to open the file now?", "Success!",
+                    System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information);
+                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
+                {
+                    Application app = new Application
+                    {
+                        Visible = true
+                    };
+                    var doc = app.Documents.Open(fileName);
+                }
             }
             finally
             {
