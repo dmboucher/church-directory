@@ -37,34 +37,36 @@ namespace DirectoryApp
                     + "FROM Directory ORDER BY LastName, FirstName";
 
                 // Pull data
-                var command = new OleDbDataAdapter(sql, connection);
-                connection.Open();
-                var dataSet = new DataSet();
-                command.Fill(dataSet, "Directory");
+                using (var command = new OleDbDataAdapter(sql, connection))
+                {
+                    connection.Open();
+                    var dataSet = new DataSet();
+                    command.Fill(dataSet, "Directory");
 
-                // Convert to a strongly typed list of model objects
-                directoryEntries =
-                      (from row in dataSet.Tables["Directory"].AsEnumerable()
-                       select new DirectoryEntry
-                       {
-                           ID = row.Field<int>("ID"),
-                           LastName = row.Field<string>("LastName"),
-                           FirstName = row.Field<string>("FirstName"),
-                           Address1 = row.Field<string>("Address1"),
-                           Address2 = row.Field<string>("Address2"),
-                           City = row.Field<string>("City"),
-                           State = row.Field<string>("State"),
-                           Zipcode = row.Field<string>("Zipcode"),
-                           Children = row.Field<string>("Children"),
-                           PhoneWork = row.Field<string>("PhoneWork"),
-                           PhoneHome = row.Field<string>("PhoneHome"),
-                           PhoneCell = row.Field<string>("PhoneCell"),
-                           Email = row.Field<string>("Email"),
-                           Email2 = row.Field<string>("Email2"),
-                           Email3 = row.Field<string>("Email3"),
-                           Picture = row.Field<string>("Picture")
-                       }).ToList();
-
+                    // Convert to a strongly typed list of model objects
+                    directoryEntries =
+                          (from row in dataSet.Tables["Directory"].AsEnumerable()
+                           select new DirectoryEntry
+                           {
+                               ID = row.Field<int>("ID"),
+                               LastName = row.Field<string>("LastName"),
+                               FirstName = row.Field<string>("FirstName"),
+                               Address1 = row.Field<string>("Address1"),
+                               Address2 = row.Field<string>("Address2"),
+                               City = row.Field<string>("City"),
+                               State = row.Field<string>("State"),
+                               Zipcode = row.Field<string>("Zipcode"),
+                               Children = row.Field<string>("Children"),
+                               PhoneWork = row.Field<string>("PhoneWork"),
+                               PhoneHome = row.Field<string>("PhoneHome"),
+                               PhoneCell = row.Field<string>("PhoneCell"),
+                               Email = row.Field<string>("Email"),
+                               Email2 = row.Field<string>("Email2"),
+                               Email3 = row.Field<string>("Email3"),
+                               Picture = row.Field<string>("Picture")
+                           }).ToList();
+                    command.Dispose();
+                }
                 connection.Close();
             }
 
