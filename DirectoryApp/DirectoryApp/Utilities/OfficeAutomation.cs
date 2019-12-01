@@ -1,5 +1,6 @@
 ﻿using Microsoft.Office.Interop.Word;
 using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
@@ -10,7 +11,8 @@ namespace DirectoryApp
     public static class OfficeAutomation
     {
         // TODO: This method is huge and ugly... needs to be broken apart and refactored a bit.
-        public static void GenerateDirectoryPages(System.Windows.Forms.Button btnGenerateDirectoryPages, System.Windows.Forms.Label lblGenerateDirectoryStatus)
+        public static string GenerateDirectoryPages(List<DirectoryEntry> DirectoryEntries, 
+            System.Windows.Forms.Button btnGenerateDirectoryPages, System.Windows.Forms.Label lblGenerateDirectoryStatus)
         {
             Application application = null;
             try
@@ -50,13 +52,9 @@ namespace DirectoryApp
                 document.ActiveWindow.Selection.TypeText(" of ");
                 Object TotalPages = WdFieldType.wdFieldNumPages;
                 document.ActiveWindow.Selection.Fields.Add(document.ActiveWindow.Selection.Range, ref TotalPages);
-                
-                // Pull data
-                lblGenerateDirectoryStatus.Text = "Pulling data...";
-                var directoryEntries = DataAccess.GetDirectoryEntries();
 
                 // Output data
-                foreach (var (directoryEntry, index) in directoryEntries.WithIndex())
+                foreach (var (directoryEntry, index) in DirectoryEntries.WithIndex())
                 {
                     // Update label
                     lblGenerateDirectoryStatus.Text = $"Outputting information for {directoryEntry.FirstName} {directoryEntry.LastName}...";
@@ -81,9 +79,9 @@ namespace DirectoryApp
                     table.Cell(1, 1).Width = application.PixelsToPoints(225f);
 
                     // Image
-                    if (!string.IsNullOrWhiteSpace(directoryEntry.Picture) && File.Exists(Properties.Settings.Default.OutputFolder + "\\" + directoryEntry.Picture))
+                    if (!string.IsNullOrWhiteSpace(directoryEntry.Picture) && File.Exists(Properties.Settings.Default.PhotosFolder + "\\" + directoryEntry.Picture))
                     {
-                        table.Cell(1, 1).Range.InlineShapes.AddPicture(Properties.Settings.Default.OutputFolder + "\\" + directoryEntry.Picture);
+                        table.Cell(1, 1).Range.InlineShapes.AddPicture(Properties.Settings.Default.PhotosFolder + "\\" + directoryEntry.Picture);
                     }
                     else
                     {
@@ -117,18 +115,8 @@ namespace DirectoryApp
                 application.ActiveDocument.SaveAs(fileName, WdSaveFormat.wdFormatDocumentDefault);
                 document.Close();
 
-                // Message box with option to open the file
-                var dialogResult = System.Windows.Forms.MessageBox.Show($"Your file has been created at\r\n{fileName}\r\n "
-                    + "\r\nWould you like to open the file now?", "Success!",
-                    System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Information);
-                if (dialogResult == System.Windows.Forms.DialogResult.Yes)
-                {
-                    Application app = new Application
-                    {
-                        Visible = true
-                    };
-                    var doc = app.Documents.Open(fileName);
-                }
+                // Return the filename
+                return fileName;
             }
             finally
             {

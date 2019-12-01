@@ -1,63 +1,169 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Windows.Forms;
 
 namespace DirectoryApp
 {
     public partial class FrmMain : Form
     {
-        public Common Common { get; set; }
+        public List<DirectoryEntry> DirectoryEntries { get; set; }
+
 
         public FrmMain()
         {
             InitializeComponent();
-            Common = new Common(this);
-            Common.SetDatabaseFilePath(Properties.Settings.Default.DatabaseFilePath);
-            Common.SetOutputFolder(Properties.Settings.Default.OutputFolder);
+            LoadGridData();
+            ResizeGrid();
         }
 
-        private void txtDatabaseFilePath_Click(object sender, EventArgs e)
+
+        public void LoadGridData()
         {
-            var result = diaDatabaseFilePath.ShowDialog();
-            if (result == DialogResult.OK)
+            if (string.IsNullOrWhiteSpace(Properties.Settings.Default.DatabaseFilePath))
             {
-                Common.SetDatabaseFilePath(diaDatabaseFilePath.FileName);
-            }
-        }
-
-        private void btnClearDatabaseFilePath_Click(object sender, EventArgs e)
-        {
-            Common.SetDatabaseFilePath(string.Empty);
-        }
-
-        private void btnTestDatabaseConnection_Click(object sender, EventArgs e)
-        {
-            if (DataAccess.CheckDatabaseConnection())
-            {
-                MessageBox.Show("Connection to database is successful!", "Success!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                DirectoryEntries = new List<DirectoryEntry>();
+                lblGridStatus.Text = "Please go to settings and identify the path to the database.";
             }
             else
             {
-                MessageBox.Show("Unable to connect to database.", "Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DirectoryEntries = DataAccess.GetDirectoryEntries();
+                lblGridStatus.Text = "Edit in the grid below. "
+                    + "Use the bottom row to Add. Right-click to Delete.";
             }
+            var bindingList = new BindingList<DirectoryEntry>(DirectoryEntries);
+            var source = new BindingSource(bindingList, null);
+            dgvDirectoryEntries.DataSource = source;
+            dgvDirectoryEntries.Columns["ID"].ReadOnly = true;
+            dgvDirectoryEntries.Columns["Picture"].ReadOnly = true;
         }
 
-        private void btnGenerateDirectoryPages_Click(object sender, EventArgs e)
-        {
-            OfficeAutomation.GenerateDirectoryPages(btnGenerateDirectoryPages, lblGenerateDirectoryStatus);
-        }
 
-        private void txtOutputFolder_Click(object sender, EventArgs e)
+        public void UpdatePicture(int rowId, string fileName)
         {
-            var result = diaOutputFolder.ShowDialog();
-            if (result == DialogResult.OK)
+            var success = DataAccess.UpdatePicture(rowId, fileName);
+            if (success)
             {
-                Common.SetOutputFolder(diaOutputFolder.SelectedPath);
+                LoadGridData();
             }
         }
 
-        private void btnClearOutputFolder_Click(object sender, EventArgs e)
+
+        private void mnuSettings_Click(object sender, EventArgs e)
         {
-            Common.SetOutputFolder(string.Empty);
+            FrmSettings settingsForm = new FrmSettings(this);
+            settingsForm.Show();
+        }
+
+
+        private void mnuPrint_Click(object sender, EventArgs e)
+        {
+            FrmPrint printForm = new FrmPrint(DirectoryEntries);
+            printForm.Show();
+        }
+
+
+        private void dgvDirectoryEntries_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            bool success;
+            if (DirectoryEntries[e.RowIndex].ID == 0)
+            {
+                success = DataAccess.InsertDirectoryEntry(DirectoryEntries[e.RowIndex]);
+                LoadGridData();
+            }
+            else
+            {
+                success = DataAccess.UpdateDirectoryEntry(DirectoryEntries[e.RowIndex]);
+            }
+
+            if (success)
+            {
+                ShowSaveSuccessLabel();
+            }
+        }
+
+
+        private void ShowSaveSuccessLabel()
+        {
+            var t = new Timer
+            {
+                Interval = 2000 // it will Tick in 3 seconds
+            };
+            t.Tick += (s, e) =>
+            {
+                lblSaveStatus.Visible = false;
+                t.Stop();
+                t.Dispose();
+            };
+            t.Start();
+            lblSaveStatus.Visible = true;
+        }
+
+
+        private void FrmMain_SizeChanged(object sender, EventArgs e)
+        {
+            ResizeGrid();
+        }
+
+
+        private void ResizeGrid()
+        {
+            dgvDirectoryEntries.Left = 25;
+            dgvDirectoryEntries.Top = 75;
+            dgvDirectoryEntries.Width = Width - 75;
+            dgvDirectoryEntries.Height = Height - 150;
+            lblSaveStatus.Left = Width - 110;
+        }
+
+        
+
+        private void dgvDirectoryEntries_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            int rowSelectedIndex = e.RowIndex;
+            int columnSelectedIndex = e.ColumnIndex;
+
+            // Handler for right-click context menu
+            if (e.Button == MouseButtons.Right)
+            {
+                if (e.RowIndex != -1)
+                {
+                    dgvDirectoryEntries.ClearSelection();
+                    dgvDirectoryEntries.Rows[rowSelectedIndex].Selected = true;
+                }
+            }
+            else
+            {
+                // Handler for picture helper - only check for this if not right-click
+                if (dgvDirectoryEntries.Columns[columnSelectedIndex].HeaderText.ToLowerInvariant() == "picture")
+                {
+                    var pictureHelperForm = new FrmPictureHelper(this, DirectoryEntries[rowSelectedIndex].ID,
+                        DirectoryEntries[rowSelectedIndex].FirstName + " " + DirectoryEntries[rowSelectedIndex].LastName,
+                        DirectoryEntries[rowSelectedIndex].Picture);
+                    pictureHelperForm.Show();
+                }
+            }
+        }
+
+
+        private void ctxDeleteRow_Click(object sender, EventArgs e)
+        {
+            // Pull selected row
+            var row = dgvDirectoryEntries.SelectedRows[0];
+            var recordName = string.IsNullOrWhiteSpace(row.Cells["FirstName"].Value.ToString())
+                && string.IsNullOrWhiteSpace(row.Cells["LastName"].Value.ToString())
+                ? "this record" : row.Cells["FirstName"].Value + " " + row.Cells["LastName"].Value;
+
+            // Confirm delete
+            var dialogResult = MessageBox.Show($"Are you sure you want to delete {recordName}?",
+                "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (DataAccess.DeleteDirectoryEntry((int)row.Cells["ID"].Value))
+                {
+                    LoadGridData();
+                    ShowSaveSuccessLabel();
+                }
+            }           
         }
     }
 }
