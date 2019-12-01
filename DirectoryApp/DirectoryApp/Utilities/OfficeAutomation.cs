@@ -52,10 +52,6 @@ namespace DirectoryApp
                 document.ActiveWindow.Selection.TypeText(" of ");
                 Object TotalPages = WdFieldType.wdFieldNumPages;
                 document.ActiveWindow.Selection.Fields.Add(document.ActiveWindow.Selection.Range, ref TotalPages);
-                
-                //// Pull data
-                //lblGenerateDirectoryStatus.Text = "Pulling data...";
-                //var directoryEntries = DataAccess.GetDirectoryEntries();
 
                 // Output data
                 foreach (var (directoryEntry, index) in DirectoryEntries.WithIndex())

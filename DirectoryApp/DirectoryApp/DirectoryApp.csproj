@@ -50,17 +50,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Forms\frmDatabaseEdit.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\frmDatabaseEdit.Designer.cs">
-      <DependentUpon>frmDatabaseEdit.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmPictureHelper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmPictureHelper.Designer.cs">
+      <DependentUpon>frmPictureHelper.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmPrint.cs">
       <SubType>Form</SubType>
@@ -81,11 +81,11 @@
     <Compile Include="Utilities\DataAccess.cs" />
     <Compile Include="Utilities\ExtensionMethods.cs" />
     <Compile Include="Utilities\OfficeAutomation.cs" />
-    <EmbeddedResource Include="Forms\frmDatabaseEdit.resx">
-      <DependentUpon>frmDatabaseEdit.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmPictureHelper.resx">
+      <DependentUpon>frmPictureHelper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmPrint.resx">
       <DependentUpon>frmPrint.cs</DependentUpon>

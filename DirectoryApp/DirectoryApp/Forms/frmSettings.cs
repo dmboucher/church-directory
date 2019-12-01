@@ -5,9 +5,13 @@ namespace DirectoryApp
 {
     public partial class FrmSettings : Form
     {
-        public FrmSettings()
+        private FrmMain ParentMainForm { get; set; }
+
+
+        public FrmSettings(FrmMain frmMain)
         {
             InitializeComponent();
+            ParentMainForm = frmMain;
             SetDatabaseFilePath(Properties.Settings.Default.DatabaseFilePath);
             SetPhotosFolder(Properties.Settings.Default.PhotosFolder);
             SetOutputFolder(Properties.Settings.Default.OutputFolder);
@@ -19,6 +23,7 @@ namespace DirectoryApp
             if (result == DialogResult.OK)
             {
                 SetDatabaseFilePath(diaDatabaseFilePath.FileName);
+                ParentMainForm.LoadGridData();
             }
         }
 
@@ -59,6 +64,7 @@ namespace DirectoryApp
         private void btnClearDatabaseFilePath_Click(object sender, EventArgs e)
         {
             SetDatabaseFilePath(string.Empty);
+            ParentMainForm.LoadGridData();
         }
 
 
