@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DirectoryApp
 {
-    static class Program
+    public class Program
     {
         /// <summary>
         /// The main entry point for the application.
@@ -14,6 +11,8 @@ namespace DirectoryApp
         [STAThread]
         static void Main()
         {
+            var Log = new Log();
+            AppDomain.CurrentDomain.UnhandledException += new UnhandledExceptionEventHandler(Log.GlobalHandler);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new FrmMain());
