@@ -65,9 +65,9 @@ namespace DirectoryApp
                         + (!string.IsNullOrWhiteSpace(directoryEntry.Address1) ? $"\v{directoryEntry.Address1}" : string.Empty)
                         + (!string.IsNullOrWhiteSpace(directoryEntry.Address2) ? $", {directoryEntry.Address2}" : string.Empty)
                         + (!string.IsNullOrWhiteSpace(directoryEntry.City) ? $"\v{directoryEntry.City}, {directoryEntry.State} {directoryEntry.Zipcode}" : string.Empty)
-                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneCell) ? $"\v(cell) {directoryEntry.PhoneCell}" : string.Empty)
-                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneHome) ? $"\v(home) {directoryEntry.PhoneHome}" : string.Empty)
-                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneWork) ? $"\v(work) {directoryEntry.PhoneWork}" : string.Empty)
+                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneCell) ? $"\v{directoryEntry.PhoneCell}" : string.Empty)
+                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneHome) ? $"\v{directoryEntry.PhoneHome}" : string.Empty)
+                        + (!string.IsNullOrWhiteSpace(directoryEntry.PhoneWork) ? $"\v{directoryEntry.PhoneWork}" : string.Empty)
                         + (!string.IsNullOrWhiteSpace(directoryEntry.Email) ? $"\v{directoryEntry.Email}" : string.Empty)
                         + (!string.IsNullOrWhiteSpace(directoryEntry.Email2) ? $"\v{directoryEntry.Email2}" : string.Empty)
                         + (!string.IsNullOrWhiteSpace(directoryEntry.Email3) ? $"\v{directoryEntry.Email3}" : string.Empty);
