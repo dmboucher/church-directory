@@ -77,13 +77,13 @@
             this.lblPictureForFamily.AutoSize = true;
             this.lblPictureForFamily.Location = new System.Drawing.Point(27, 112);
             this.lblPictureForFamily.Name = "lblPictureForFamily";
-            this.lblPictureForFamily.Size = new System.Drawing.Size(264, 37);
+            this.lblPictureForFamily.Size = new System.Drawing.Size(129, 20);
             this.lblPictureForFamily.TabIndex = 3;
             this.lblPictureForFamily.Text = "Picture for family:";
             // 
             // FrmPictureHelper
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(19F, 37F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1209, 959);
             this.Controls.Add(this.lblPictureForFamily);
@@ -92,6 +92,7 @@
             this.Controls.Add(this.pbxPicture);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

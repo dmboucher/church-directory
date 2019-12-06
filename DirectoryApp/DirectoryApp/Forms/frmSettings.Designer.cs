@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSettings));
             this.btnClearOutputFolder = new System.Windows.Forms.Button();
             this.txtOutputFolder = new System.Windows.Forms.TextBox();
             this.lblOutputFolder = new System.Windows.Forms.Label();
@@ -47,10 +48,9 @@
             // btnClearOutputFolder
             // 
             this.btnClearOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearOutputFolder.Location = new System.Drawing.Point(1383, 619);
-            this.btnClearOutputFolder.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClearOutputFolder.Location = new System.Drawing.Point(692, 322);
             this.btnClearOutputFolder.Name = "btnClearOutputFolder";
-            this.btnClearOutputFolder.Size = new System.Drawing.Size(446, 75);
+            this.btnClearOutputFolder.Size = new System.Drawing.Size(223, 39);
             this.btnClearOutputFolder.TabIndex = 13;
             this.btnClearOutputFolder.Text = "Clear Output Folder";
             this.btnClearOutputFolder.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -60,10 +60,9 @@
             // txtOutputFolder
             // 
             this.txtOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutputFolder.Location = new System.Drawing.Point(389, 545);
-            this.txtOutputFolder.Margin = new System.Windows.Forms.Padding(6);
+            this.txtOutputFolder.Location = new System.Drawing.Point(194, 283);
             this.txtOutputFolder.Name = "txtOutputFolder";
-            this.txtOutputFolder.Size = new System.Drawing.Size(1440, 44);
+            this.txtOutputFolder.Size = new System.Drawing.Size(722, 26);
             this.txtOutputFolder.TabIndex = 12;
             this.txtOutputFolder.Click += new System.EventHandler(this.txtOutputFolder_Click);
             // 
@@ -71,20 +70,18 @@
             // 
             this.lblOutputFolder.AutoSize = true;
             this.lblOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutputFolder.Location = new System.Drawing.Point(143, 548);
-            this.lblOutputFolder.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblOutputFolder.Location = new System.Drawing.Point(72, 285);
             this.lblOutputFolder.Name = "lblOutputFolder";
-            this.lblOutputFolder.Size = new System.Drawing.Size(214, 37);
+            this.lblOutputFolder.Size = new System.Drawing.Size(107, 20);
             this.lblOutputFolder.TabIndex = 11;
             this.lblOutputFolder.Text = "Output Folder";
             // 
             // btnClearDatabaseFilePath
             // 
             this.btnClearDatabaseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearDatabaseFilePath.Location = new System.Drawing.Point(1383, 138);
-            this.btnClearDatabaseFilePath.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClearDatabaseFilePath.Location = new System.Drawing.Point(692, 72);
             this.btnClearDatabaseFilePath.Name = "btnClearDatabaseFilePath";
-            this.btnClearDatabaseFilePath.Size = new System.Drawing.Size(446, 75);
+            this.btnClearDatabaseFilePath.Size = new System.Drawing.Size(223, 39);
             this.btnClearDatabaseFilePath.TabIndex = 10;
             this.btnClearDatabaseFilePath.Text = "Clear Database File Path";
             this.btnClearDatabaseFilePath.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -95,10 +92,9 @@
             // 
             this.btnTestDatabaseConnection.Enabled = false;
             this.btnTestDatabaseConnection.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTestDatabaseConnection.Location = new System.Drawing.Point(389, 138);
-            this.btnTestDatabaseConnection.Margin = new System.Windows.Forms.Padding(6);
+            this.btnTestDatabaseConnection.Location = new System.Drawing.Point(194, 72);
             this.btnTestDatabaseConnection.Name = "btnTestDatabaseConnection";
-            this.btnTestDatabaseConnection.Size = new System.Drawing.Size(446, 75);
+            this.btnTestDatabaseConnection.Size = new System.Drawing.Size(223, 39);
             this.btnTestDatabaseConnection.TabIndex = 9;
             this.btnTestDatabaseConnection.Text = "Test Database Connection";
             this.btnTestDatabaseConnection.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -108,10 +104,9 @@
             // txtDatabaseFilePath
             // 
             this.txtDatabaseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDatabaseFilePath.Location = new System.Drawing.Point(389, 72);
-            this.txtDatabaseFilePath.Margin = new System.Windows.Forms.Padding(6);
+            this.txtDatabaseFilePath.Location = new System.Drawing.Point(194, 37);
             this.txtDatabaseFilePath.Name = "txtDatabaseFilePath";
-            this.txtDatabaseFilePath.Size = new System.Drawing.Size(1440, 44);
+            this.txtDatabaseFilePath.Size = new System.Drawing.Size(722, 26);
             this.txtDatabaseFilePath.TabIndex = 8;
             this.txtDatabaseFilePath.Click += new System.EventHandler(this.txtDatabaseFilePath_Click);
             // 
@@ -119,10 +114,9 @@
             // 
             this.lblDatabaseFilePath.AutoSize = true;
             this.lblDatabaseFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDatabaseFilePath.Location = new System.Drawing.Point(69, 77);
-            this.lblDatabaseFilePath.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblDatabaseFilePath.Location = new System.Drawing.Point(34, 40);
             this.lblDatabaseFilePath.Name = "lblDatabaseFilePath";
-            this.lblDatabaseFilePath.Size = new System.Drawing.Size(289, 37);
+            this.lblDatabaseFilePath.Size = new System.Drawing.Size(145, 20);
             this.lblDatabaseFilePath.TabIndex = 7;
             this.lblDatabaseFilePath.Text = "Database File Path";
             // 
@@ -136,19 +130,19 @@
             // 
             this.lblSpacer.AutoSize = true;
             this.lblSpacer.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblSpacer.Location = new System.Drawing.Point(1904, 717);
+            this.lblSpacer.Location = new System.Drawing.Point(952, 373);
+            this.lblSpacer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSpacer.Name = "lblSpacer";
-            this.lblSpacer.Size = new System.Drawing.Size(18, 25);
+            this.lblSpacer.Size = new System.Drawing.Size(10, 13);
             this.lblSpacer.TabIndex = 14;
             this.lblSpacer.Text = ".";
             // 
             // btnClearPhotosFolder
             // 
             this.btnClearPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearPhotosFolder.Location = new System.Drawing.Point(1383, 381);
-            this.btnClearPhotosFolder.Margin = new System.Windows.Forms.Padding(6);
+            this.btnClearPhotosFolder.Location = new System.Drawing.Point(692, 198);
             this.btnClearPhotosFolder.Name = "btnClearPhotosFolder";
-            this.btnClearPhotosFolder.Size = new System.Drawing.Size(446, 75);
+            this.btnClearPhotosFolder.Size = new System.Drawing.Size(223, 39);
             this.btnClearPhotosFolder.TabIndex = 17;
             this.btnClearPhotosFolder.Text = "Clear Photos Folder";
             this.btnClearPhotosFolder.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -158,10 +152,9 @@
             // txtPhotosFolder
             // 
             this.txtPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhotosFolder.Location = new System.Drawing.Point(389, 307);
-            this.txtPhotosFolder.Margin = new System.Windows.Forms.Padding(6);
+            this.txtPhotosFolder.Location = new System.Drawing.Point(194, 160);
             this.txtPhotosFolder.Name = "txtPhotosFolder";
-            this.txtPhotosFolder.Size = new System.Drawing.Size(1440, 44);
+            this.txtPhotosFolder.Size = new System.Drawing.Size(722, 26);
             this.txtPhotosFolder.TabIndex = 16;
             this.txtPhotosFolder.Click += new System.EventHandler(this.txtPhotosFolder_Click);
             // 
@@ -169,19 +162,18 @@
             // 
             this.lblPhotosFolder.AutoSize = true;
             this.lblPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhotosFolder.Location = new System.Drawing.Point(143, 310);
-            this.lblPhotosFolder.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.lblPhotosFolder.Location = new System.Drawing.Point(72, 161);
             this.lblPhotosFolder.Name = "lblPhotosFolder";
-            this.lblPhotosFolder.Size = new System.Drawing.Size(217, 37);
+            this.lblPhotosFolder.Size = new System.Drawing.Size(108, 20);
             this.lblPhotosFolder.TabIndex = 15;
             this.lblPhotosFolder.Text = "Photos Folder";
             // 
             // FrmSettings
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(1924, 751);
+            this.ClientSize = new System.Drawing.Size(962, 391);
             this.Controls.Add(this.btnClearPhotosFolder);
             this.Controls.Add(this.txtPhotosFolder);
             this.Controls.Add(this.lblPhotosFolder);
@@ -193,6 +185,8 @@
             this.Controls.Add(this.btnTestDatabaseConnection);
             this.Controls.Add(this.txtDatabaseFilePath);
             this.Controls.Add(this.lblDatabaseFilePath);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.Name = "FrmSettings";
             this.Text = "Settings";
             this.ResumeLayout(false);
