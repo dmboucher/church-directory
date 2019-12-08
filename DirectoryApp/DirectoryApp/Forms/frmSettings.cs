@@ -13,9 +13,11 @@ namespace DirectoryApp
             InitializeComponent();
             ParentMainForm = frmMain;
             SetDatabaseFilePath(Properties.Settings.Default.DatabaseFilePath);
+            SetNoPictureFilePath(Properties.Settings.Default.NoPictureFilePath);
             SetPhotosFolder(Properties.Settings.Default.PhotosFolder);
             SetOutputFolder(Properties.Settings.Default.OutputFolder);
         }
+
 
         private void txtDatabaseFilePath_Click(object sender, EventArgs e)
         {
@@ -24,6 +26,16 @@ namespace DirectoryApp
             {
                 SetDatabaseFilePath(diaDatabaseFilePath.FileName);
                 ParentMainForm.LoadGridData();
+            }
+        }
+
+
+        private void txtNoPictureFilePath_Click(object sender, EventArgs e)
+        {
+            var result = diaNoPictureFilePath.ShowDialog();
+            if (result == DialogResult.OK)
+            {
+                SetNoPictureFilePath(diaNoPictureFilePath.FileName);
             }
         }
 
@@ -68,6 +80,12 @@ namespace DirectoryApp
         }
 
 
+        private void btnNoPictureFilePath_Click(object sender, EventArgs e)
+        {
+            SetNoPictureFilePath(string.Empty);
+        }
+
+
         private void btnClearPhotosFolder_Click(object sender, EventArgs e)
         {
             SetPhotosFolder(string.Empty);
@@ -80,7 +98,7 @@ namespace DirectoryApp
         }
 
 
-        public void SetDatabaseFilePath(string filePath)
+        private void SetDatabaseFilePath(string filePath)
         {
             txtDatabaseFilePath.Text = filePath;
             diaDatabaseFilePath.FileName = filePath;
@@ -90,7 +108,16 @@ namespace DirectoryApp
         }
 
 
-        public void SetPhotosFolder(string folderPath)
+        private void SetNoPictureFilePath(string filePath)
+        {
+            txtNoPictureFilePath.Text = filePath;
+            diaDatabaseFilePath.FileName = filePath;
+            Properties.Settings.Default.NoPictureFilePath = filePath;
+            Properties.Settings.Default.Save();
+        }
+
+
+        private void SetPhotosFolder(string folderPath)
         {
             txtPhotosFolder.Text = folderPath;
             diaPhotosFolder.SelectedPath = folderPath;
@@ -99,7 +126,7 @@ namespace DirectoryApp
         }
 
 
-        public void SetOutputFolder(string folderPath)
+        private void SetOutputFolder(string folderPath)
         {
             txtOutputFolder.Text = folderPath;
             diaOutputFolder.SelectedPath = folderPath;
