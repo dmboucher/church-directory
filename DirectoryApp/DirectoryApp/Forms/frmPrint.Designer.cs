@@ -34,6 +34,7 @@
             this.btnPrintYes = new System.Windows.Forms.Button();
             this.btnPrintNo = new System.Windows.Forms.Button();
             this.lblSpacer = new System.Windows.Forms.Label();
+            this.btnCancelOutputCreation = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // lblGenerateDirectoryStatus
@@ -64,7 +65,7 @@
             // 
             this.btnPrintYes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintYes.Location = new System.Drawing.Point(14, 184);
-            this.btnPrintYes.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintYes.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintYes.Name = "btnPrintYes";
             this.btnPrintYes.Size = new System.Drawing.Size(60, 38);
             this.btnPrintYes.TabIndex = 4;
@@ -77,7 +78,7 @@
             // 
             this.btnPrintNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPrintNo.Location = new System.Drawing.Point(84, 184);
-            this.btnPrintNo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnPrintNo.Margin = new System.Windows.Forms.Padding(2);
             this.btnPrintNo.Name = "btnPrintNo";
             this.btnPrintNo.Size = new System.Drawing.Size(60, 38);
             this.btnPrintNo.TabIndex = 5;
@@ -97,19 +98,33 @@
             this.lblSpacer.TabIndex = 6;
             this.lblSpacer.Text = ".";
             // 
+            // btnCancelOutputCreation
+            // 
+            this.btnCancelOutputCreation.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCancelOutputCreation.Location = new System.Drawing.Point(243, 18);
+            this.btnCancelOutputCreation.Name = "btnCancelOutputCreation";
+            this.btnCancelOutputCreation.Size = new System.Drawing.Size(223, 39);
+            this.btnCancelOutputCreation.TabIndex = 7;
+            this.btnCancelOutputCreation.Text = "Cancel Output Creation";
+            this.btnCancelOutputCreation.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnCancelOutputCreation.UseVisualStyleBackColor = true;
+            this.btnCancelOutputCreation.Visible = false;
+            this.btnCancelOutputCreation.Click += new System.EventHandler(this.btnCancelOutputCreation_Click);
+            // 
             // FrmPrint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
             this.ClientSize = new System.Drawing.Size(962, 241);
+            this.Controls.Add(this.btnCancelOutputCreation);
             this.Controls.Add(this.lblSpacer);
             this.Controls.Add(this.btnPrintNo);
             this.Controls.Add(this.btnPrintYes);
             this.Controls.Add(this.lblGenerateDirectoryStatus);
             this.Controls.Add(this.btnGenerateDirectoryPages);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmPrint";
             this.Text = "Print";
             this.ResumeLayout(false);
@@ -124,5 +139,6 @@
         private System.Windows.Forms.Button btnPrintYes;
         private System.Windows.Forms.Button btnPrintNo;
         private System.Windows.Forms.Label lblSpacer;
+        public System.Windows.Forms.Button btnCancelOutputCreation;
     }
 }

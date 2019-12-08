@@ -43,12 +43,16 @@
             this.txtPhotosFolder = new System.Windows.Forms.TextBox();
             this.lblPhotosFolder = new System.Windows.Forms.Label();
             this.diaPhotosFolder = new System.Windows.Forms.FolderBrowserDialog();
+            this.btnNoPictureFilePath = new System.Windows.Forms.Button();
+            this.txtNoPictureFilePath = new System.Windows.Forms.TextBox();
+            this.lblNoPictureFilePath = new System.Windows.Forms.Label();
+            this.diaNoPictureFilePath = new System.Windows.Forms.OpenFileDialog();
             this.SuspendLayout();
             // 
             // btnClearOutputFolder
             // 
             this.btnClearOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearOutputFolder.Location = new System.Drawing.Point(692, 322);
+            this.btnClearOutputFolder.Location = new System.Drawing.Point(693, 465);
             this.btnClearOutputFolder.Name = "btnClearOutputFolder";
             this.btnClearOutputFolder.Size = new System.Drawing.Size(223, 39);
             this.btnClearOutputFolder.TabIndex = 13;
@@ -60,7 +64,7 @@
             // txtOutputFolder
             // 
             this.txtOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtOutputFolder.Location = new System.Drawing.Point(194, 283);
+            this.txtOutputFolder.Location = new System.Drawing.Point(195, 426);
             this.txtOutputFolder.Name = "txtOutputFolder";
             this.txtOutputFolder.Size = new System.Drawing.Size(722, 26);
             this.txtOutputFolder.TabIndex = 12;
@@ -70,7 +74,7 @@
             // 
             this.lblOutputFolder.AutoSize = true;
             this.lblOutputFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutputFolder.Location = new System.Drawing.Point(72, 285);
+            this.lblOutputFolder.Location = new System.Drawing.Point(73, 428);
             this.lblOutputFolder.Name = "lblOutputFolder";
             this.lblOutputFolder.Size = new System.Drawing.Size(107, 20);
             this.lblOutputFolder.TabIndex = 11;
@@ -130,7 +134,7 @@
             // 
             this.lblSpacer.AutoSize = true;
             this.lblSpacer.ForeColor = System.Drawing.SystemColors.Info;
-            this.lblSpacer.Location = new System.Drawing.Point(952, 373);
+            this.lblSpacer.Location = new System.Drawing.Point(953, 516);
             this.lblSpacer.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblSpacer.Name = "lblSpacer";
             this.lblSpacer.Size = new System.Drawing.Size(10, 13);
@@ -140,7 +144,7 @@
             // btnClearPhotosFolder
             // 
             this.btnClearPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearPhotosFolder.Location = new System.Drawing.Point(692, 198);
+            this.btnClearPhotosFolder.Location = new System.Drawing.Point(693, 333);
             this.btnClearPhotosFolder.Name = "btnClearPhotosFolder";
             this.btnClearPhotosFolder.Size = new System.Drawing.Size(223, 39);
             this.btnClearPhotosFolder.TabIndex = 17;
@@ -152,7 +156,7 @@
             // txtPhotosFolder
             // 
             this.txtPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPhotosFolder.Location = new System.Drawing.Point(194, 160);
+            this.txtPhotosFolder.Location = new System.Drawing.Point(195, 295);
             this.txtPhotosFolder.Name = "txtPhotosFolder";
             this.txtPhotosFolder.Size = new System.Drawing.Size(722, 26);
             this.txtPhotosFolder.TabIndex = 16;
@@ -162,18 +166,56 @@
             // 
             this.lblPhotosFolder.AutoSize = true;
             this.lblPhotosFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPhotosFolder.Location = new System.Drawing.Point(72, 161);
+            this.lblPhotosFolder.Location = new System.Drawing.Point(73, 296);
             this.lblPhotosFolder.Name = "lblPhotosFolder";
             this.lblPhotosFolder.Size = new System.Drawing.Size(108, 20);
             this.lblPhotosFolder.TabIndex = 15;
             this.lblPhotosFolder.Text = "Photos Folder";
+            // 
+            // btnNoPictureFilePath
+            // 
+            this.btnNoPictureFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNoPictureFilePath.Location = new System.Drawing.Point(693, 196);
+            this.btnNoPictureFilePath.Name = "btnNoPictureFilePath";
+            this.btnNoPictureFilePath.Size = new System.Drawing.Size(223, 39);
+            this.btnNoPictureFilePath.TabIndex = 21;
+            this.btnNoPictureFilePath.Text = "Clear No Picture Available";
+            this.btnNoPictureFilePath.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
+            this.btnNoPictureFilePath.UseVisualStyleBackColor = true;
+            this.btnNoPictureFilePath.Click += new System.EventHandler(this.btnNoPictureFilePath_Click);
+            // 
+            // txtNoPictureFilePath
+            // 
+            this.txtNoPictureFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNoPictureFilePath.Location = new System.Drawing.Point(195, 161);
+            this.txtNoPictureFilePath.Name = "txtNoPictureFilePath";
+            this.txtNoPictureFilePath.Size = new System.Drawing.Size(722, 26);
+            this.txtNoPictureFilePath.TabIndex = 19;
+            this.txtNoPictureFilePath.Click += new System.EventHandler(this.txtNoPictureFilePath_Click);
+            // 
+            // lblNoPictureFilePath
+            // 
+            this.lblNoPictureFilePath.AutoSize = true;
+            this.lblNoPictureFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNoPictureFilePath.Location = new System.Drawing.Point(35, 164);
+            this.lblNoPictureFilePath.Name = "lblNoPictureFilePath";
+            this.lblNoPictureFilePath.Size = new System.Drawing.Size(149, 20);
+            this.lblNoPictureFilePath.TabIndex = 18;
+            this.lblNoPictureFilePath.Text = "No Picture Available";
+            // 
+            // diaNoPictureFilePath
+            // 
+            this.diaNoPictureFilePath.Filter = "Image Files (*.jpg, *.jpeg, *png)|*jpg; *jpeg; *png";
             // 
             // FrmSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
-            this.ClientSize = new System.Drawing.Size(962, 391);
+            this.ClientSize = new System.Drawing.Size(962, 536);
+            this.Controls.Add(this.btnNoPictureFilePath);
+            this.Controls.Add(this.txtNoPictureFilePath);
+            this.Controls.Add(this.lblNoPictureFilePath);
             this.Controls.Add(this.btnClearPhotosFolder);
             this.Controls.Add(this.txtPhotosFolder);
             this.Controls.Add(this.lblPhotosFolder);
@@ -186,7 +228,7 @@
             this.Controls.Add(this.txtDatabaseFilePath);
             this.Controls.Add(this.lblDatabaseFilePath);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FrmSettings";
             this.Text = "Settings";
             this.ResumeLayout(false);
@@ -210,5 +252,9 @@
         public System.Windows.Forms.TextBox txtPhotosFolder;
         private System.Windows.Forms.Label lblPhotosFolder;
         public System.Windows.Forms.FolderBrowserDialog diaPhotosFolder;
+        private System.Windows.Forms.Button btnNoPictureFilePath;
+        public System.Windows.Forms.TextBox txtNoPictureFilePath;
+        private System.Windows.Forms.Label lblNoPictureFilePath;
+        private System.Windows.Forms.OpenFileDialog diaNoPictureFilePath;
     }
 }
